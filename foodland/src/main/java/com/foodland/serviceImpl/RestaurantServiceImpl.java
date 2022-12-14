@@ -7,4 +7,5 @@ import com.foodland.service.RestaurentService;
 @Service
 public class RestaurantServiceImpl implements RestaurentService {
 
+	
 }
