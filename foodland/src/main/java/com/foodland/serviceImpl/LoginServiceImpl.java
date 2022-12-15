@@ -104,7 +104,6 @@ public class LoginServiceImpl implements LoginService {
             throw new UserLoginException("Please enter valid password");
 
         }
-        return null;
 
     }
 
