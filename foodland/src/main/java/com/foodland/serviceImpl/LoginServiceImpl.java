@@ -24,8 +24,8 @@ public class LoginServiceImpl implements LoginService {
     private UserDao udao;
     @Autowired
     private SessionDao sdao;
-//    @Autowired
-//    private RestaurantDao rdao;
+   @Autowired
+   private RestaurantDao rdao;
 
 
 
@@ -66,33 +66,44 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public String logIntoRestaurent(LoginDTO dto) throws UserLoginException {
 
-//        Restaurant existingUser = rdao.findByMobile(dto.getMobile());
-//        if(existingUser == null){
-//            throw  new UserLoginException("User not exist with this mobile no. plz create Account");
-//        }
-//
-//        Optional<CurrentUserSession> validSession = Optional.ofNullable(sdao.findByMobile(existingUser.getMobile()));
-//
-//        if(validSession.isPresent()){
-//            throw new UserLoginException("User already logged in with this Number");
-//
-//
-//        }
-//
-//        if(existingUser.getPassword().equals(dto.getPassword())){
-//
-//            String key = RandomString.make(8);
-//
-//            CurrentUserSession currentUserSession = new CurrentUserSession(existingUser.getMobile(),key,
-//                    LocalDateTime.now(),existingUser.getType());
-//
-//            sdao.save(currentUserSession);
-//
-//            return currentUserSession.toString();
-//        }else {
-//
-//            throw new UserLoginException("Please enter valid password");
-//        }
+        Restaurant existingUser = rdao.findByMobile(dto.getMobile());
+        if(existingUser == null){
+            throw  new UserLoginException("User not exist with this mobile no. plz create Account");
+       }
+
+       Optional<CurrentUserSession> validSession = Optional.ofNullable(sdao.findByMobile(existingUser.getMobile()));
+
+       if(validSession.isPresent()){
+           throw new UserLoginException("User already logged in with this Number");
+
+
+        }
+
+        if(existingUser.getPassword().equals(dto.getPassword())){
+
+            String key = RandomString.make(8);
+
+
+
+            CurrentUserSession currentUserSession = new CurrentUserSession(existingUser.getMobile(),key,
+
+                    LocalDateTime.now(),existingUser.getType());
+
+
+
+            sdao.save(currentUserSession);
+
+
+
+            return currentUserSession.toString();
+
+        }else {
+
+
+
+            throw new UserLoginException("Please enter valid password");
+
+        }
         return null;
 
     }
