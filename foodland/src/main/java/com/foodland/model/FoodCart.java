@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import lombok.Data;
 
@@ -15,8 +16,8 @@ public class FoodCart {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer cartId;
 
-//	@OneToOne
-//	private Customer customer;
+	@OneToOne
+	private User customer;
 
 //	@OneToMany
 //	private List<Item> itemList;
