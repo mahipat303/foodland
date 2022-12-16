@@ -2,6 +2,8 @@ package com.foodland.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,6 +26,13 @@ public class User {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "AID")
 	private Address address;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "cart_id")
+//	@PrimaryKeyJoinColumn
+//	@JsonIgnore
+	private FoodCart cart;
+	
 
 	public User() {
 	}
