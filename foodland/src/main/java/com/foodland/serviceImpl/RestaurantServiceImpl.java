@@ -116,20 +116,15 @@ public class RestaurantServiceImpl implements RestaurentService {
 
 		if (uType.name().equals("Customer")) {
 
-
-
-
-
-
-
-
+			List<Restaurant> rlist=rdo.findByAddress(location);
+			if(rlist.isEmpty()){
+				throw  new RestaurantException("No Restaurant available with this Address : "+location);
+			}else{
+				return rlist;
+			}
 		} else {
 			throw new UserException("login as a Customer");
 		}
-
-
-
-		return null;
 	}
 
 	@Override
@@ -140,19 +135,16 @@ public class RestaurantServiceImpl implements RestaurentService {
 
 		if (uType.name().equals("Customer")) {
 
-
-
-
-
-
-
+        List<Restaurant> rlist=rdo.findByItems(name);
+		if(rlist.isEmpty()){
+			throw  new RestaurantException("No Restaurant available with this Name : "+name);
+		}else{
+			return rlist;
+		}
 
 		} else {
 			throw new UserException("login as a Customer");
 		}
 
-
-
-		return null;
 	}
 }

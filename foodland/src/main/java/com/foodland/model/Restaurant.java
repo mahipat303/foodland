@@ -26,7 +26,7 @@ public class Restaurant {
 	@AssertTrue
 	private String restaurantName;
 	@OneToOne
-	private Address addresss;
+	private Address address;
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Item> items;
 	@AssertTrue
@@ -53,10 +53,10 @@ public class Restaurant {
 	public Restaurant() {
 	}
 
-	public Restaurant(Integer restaurantaid, String restaurantName, Address addresss, List<Item> items, String managerName, String mobile, String password, UserType type) {
+	public Restaurant(Integer restaurantaid, String restaurantName, Address address, List<Item> items, String managerName, String mobile, String password, UserType type) {
 		this.restaurantaid = restaurantaid;
 		this.restaurantName = restaurantName;
-		this.addresss = addresss;
+		this.address = address;
 		this.items = items;
 		ManagerName = managerName;
 		this.mobile = mobile;
@@ -80,12 +80,12 @@ public class Restaurant {
 		this.restaurantName = restaurantName;
 	}
 
-	public Address getAddresss() {
-		return addresss;
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setAddresss(Address addresss) {
-		this.addresss = addresss;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public List<Item> getItems() {
