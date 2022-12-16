@@ -1,13 +1,24 @@
 package com.foodland.serviceImpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.foodland.model.FoodCart;
+import com.foodland.repository.FoodCartDao;
 import com.foodland.service.CartService;
 
 public class CartServiceImpl implements CartService {
+	
+	@Autowired
+	private FoodCartDao fdo;
+	
 
 	@Override
 	public FoodCart addItemToCart(Integer itemId, String key) {
-		// TODO Auto-generated method stub
+		
+		
+		
+		
+		
 		return null;
 	}
 
