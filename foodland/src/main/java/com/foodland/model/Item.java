@@ -22,9 +22,9 @@ public class Item {
 	private Integer itemId;
 	private String itemName;
 	
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name="Cid")
-//	private Category category;
+
+
+	private Category category;
 	
 	private Integer cost;
 	
