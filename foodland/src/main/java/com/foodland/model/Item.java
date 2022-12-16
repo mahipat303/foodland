@@ -21,13 +21,21 @@ public class Item {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Integer itemId;
 	private String itemName;
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="Cid")
-	private Category category;
+	
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name="Cid")
+//	private Category category;
+	
 	private Integer cost;
+	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="restaurantaid")
-	private List<Restaurant> restaurant=new ArrayList<>();
+	private Restaurant restaurant;
+	
+	private Integer Quantity;
+	
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	private FoodCart cart;
 	
 	
 }
