@@ -15,6 +15,7 @@ public class Category {
 	private Integer CategoryId;
 
 	private String CategoryName;
+	
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<Item> items=new ArrayList<Item>();
 

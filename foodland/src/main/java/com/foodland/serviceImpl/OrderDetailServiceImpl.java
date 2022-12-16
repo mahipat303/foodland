@@ -2,6 +2,7 @@ package com.foodland.serviceImpl;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -109,8 +110,35 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
 	@Override
 	public String cancelOrderByCustomer(Integer orderId, String key) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Optional<OrderDetail> order = odo.findById(orderId);
+
+		if (order.isPresent()) {
+
+			OrderDetail od = order.get();
+
+			User customer = od.getCustomer();
+
+			CurrentUserSession cus = sdo.findByMobile(customer.getMobile());
+
+			if (cus == null) {
+				throw new UserException("enter valid key");
+			}
+
+			if (cus.getUuid().equals(key)) {
+
+				odo.delete(od);
+
+				return "order deleted successfully...";
+
+			} else {
+				throw new OrderDetailException("this order is not your order");
+			}
+
+		} else {
+			throw new OrderDetailException("no order available with id : " + orderId);
+		}
+
 	}
 
 	@Override
@@ -135,6 +163,30 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 			}
 
 			return odo.save(od1);
+
+		} else {
+			throw new RestaurantException("login as a Restaurant");
+		}
+
+	}
+
+	@Override
+	public List<OrderDetail> viewAllOrder(String key) {
+		CurrentUserSession cus = sdo.findByUuid(key);
+
+		UserType uType = cus.getType();
+
+		if (uType.name() == "Restaurant") {
+
+			Restaurant res = rdo.findByMobile(cus.getMobile());
+
+			List<OrderDetail> orderDetails = res.getOrderDetails();
+
+			if (orderDetails.isEmpty()) {
+				throw new OrderDetailException("no order available right now");
+			}
+
+			return orderDetails;
 
 		} else {
 			throw new RestaurantException("login as a Restaurant");
