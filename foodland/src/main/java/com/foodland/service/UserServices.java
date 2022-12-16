@@ -9,7 +9,10 @@ import com.foodland.model.User;
 @Service
 public interface UserServices {
 
+
 	public User addUser(User user)throws UserException;
+
+	
 
 
 	public User updateUser(User user)throws UserException;
