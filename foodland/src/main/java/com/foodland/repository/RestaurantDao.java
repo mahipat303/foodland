@@ -6,4 +6,6 @@ import com.foodland.model.Restaurant;
 
 public interface RestaurantDao extends JpaRepository<Restaurant, Integer>{
 
+	public Restaurant findByMobile(String mobile) throw UserLoginException;
+
 }

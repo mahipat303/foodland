@@ -1,5 +1,6 @@
 package com.foodland.serviceImpl;
 
+import com.foodland.exception.UserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,11 @@ public class UserServicesImpl implements UserServices{
 	
 	@Override
 	public User addUser(User user) {
+
+		User exsitUser = udao.findByMobile(user.getMobile());
+
+		if(exsitUser != null)
+			throw new UserException("User Already registered");
 		
 		return udao.save(user);
 	}

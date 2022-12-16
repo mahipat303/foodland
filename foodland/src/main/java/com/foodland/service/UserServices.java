@@ -6,7 +6,7 @@ import com.foodland.model.User;
 
 @Service
 public interface UserServices {
-	
-	public User addUser(User user);
+
+	public User addUser(User user)throws UserException;
 
 }
