@@ -12,39 +12,34 @@ import java.util.List;
 @Service
 public class RestaurantServiceImpl implements RestaurentService {
 
-	private RestaurantDao rd;
 
 	@Override
 	public Restaurant addRestaurant(Restaurant restaurant) throws RestaurantException {
-         if(restaurant==null){
-			 throw new RestaurantException("Please Enter Valid Restaurant");
-		 }else{
-			return rd.save(restaurant);
-		 }
-	}
-
-	@Override
-	public Restaurant updateRestaurant(Restaurant restaurant) throws RestaurantException {
 		return null;
 	}
 
 	@Override
-	public Restaurant removeRestaurant(Restaurant restaurant) throws RestaurantException {
+	public Restaurant updateRestaurant(Restaurant restaurant, String key) throws RestaurantException {
 		return null;
 	}
 
 	@Override
-	public Restaurant viewRestaurant(Restaurant restaurant) throws RestaurantException {
+	public Restaurant removeRestaurant(Restaurant restaurant, String key) throws RestaurantException {
 		return null;
 	}
 
 	@Override
-	public List<Restaurant> viewRestaurantByLocation(String location) throws RestaurantException {
+	public Restaurant viewRestaurant(Restaurant restaurant, String key) throws RestaurantException {
 		return null;
 	}
 
 	@Override
-	public List<Restaurant> viewRestaurantsByItemName(String name) throws RestaurantException {
+	public List<Restaurant> viewRestaurantByLocation(String location, String key) throws RestaurantException {
+		return null;
+	}
+
+	@Override
+	public List<Restaurant> viewRestaurantsByItemName(String name, String key) throws RestaurantException {
 		return null;
 	}
 }
