@@ -2,6 +2,7 @@ package com.foodland.service;
 
 import org.springframework.stereotype.Service;
 
+import com.foodland.exception.UserException;
 import com.foodland.model.User;
 
 @Service

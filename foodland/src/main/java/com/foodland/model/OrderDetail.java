@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -28,10 +30,11 @@ public class OrderDetail {
 	@ManyToOne
 	private Restaurant restaurant;
 
-//	@ManyToOne
-//	private Customer customer;
+	@ManyToOne
+	private User customer;
 
 //	@OneToOne
+//	@JsonIgnore
 //	private  Bill bill;
 
 }
