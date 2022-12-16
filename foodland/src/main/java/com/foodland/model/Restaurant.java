@@ -28,6 +28,7 @@ public class Restaurant {
 	@OneToOne
 	private Address addresss;
 	@OneToMany(cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Item> items;
 	@AssertTrue
 	private String ManagerName;
@@ -38,7 +39,7 @@ public class Restaurant {
 	private UserType type;
 	
 	
-	@OneToMany
+	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<OrderDetail> orderDetails = new ArrayList<>();
 

@@ -9,9 +9,11 @@ import java.util.List;
 @Entity
 @Data
 public class Category {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int CategoryId;
+	private Integer CategoryId;
+
 	private String CategoryName;
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<Item> items=new ArrayList<Item>();

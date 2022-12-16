@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -28,8 +29,8 @@ public class FoodCart {
 	private User customer;
 
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-//	@JoinColumn(name = "items")
-	
+	@JoinTable(name="cart_item",joinColumns=@JoinColumn(name="cartId"),inverseJoinColumns=@JoinColumn(name="itemId"))
 	private List<Item> itemList = new ArrayList<>();
 
+	
 }
