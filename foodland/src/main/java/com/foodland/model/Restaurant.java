@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.AssertTrue;
@@ -17,7 +18,6 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
 public class Restaurant {
 	@Id
@@ -28,19 +28,24 @@ public class Restaurant {
 	@OneToOne
 	private Address address;
 	@OneToMany(cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Item> items;
 	@AssertTrue
 	private String ManagerName;
 	@AssertTrue
-	@Size(min=10,max=10)
+	@Size(min = 10, max = 10)
 	private String mobile;
-	private  String password;
+	private String password;
 	private UserType type;
-	
-	
-	@OneToMany
+
+	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<OrderDetail> orderDetails = new ArrayList<>();
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "resId")
+	@JsonIgnore
+	private List<Category> categories = new ArrayList<>();
 
 	public List<OrderDetail> getOrderDetails() {
 		return orderDetails;
@@ -53,7 +58,10 @@ public class Restaurant {
 	public Restaurant() {
 	}
 
-	public Restaurant(Integer restaurantaid, String restaurantName, Address address, List<Item> items, String managerName, String mobile, String password, UserType type) {
+
+	public Restaurant(Integer restaurantaid, String restaurantName, Address addresss, List<Item> items,
+			String managerName, String mobile, String password, UserType type) {
+
 		this.restaurantaid = restaurantaid;
 		this.restaurantName = restaurantName;
 		this.address = address;

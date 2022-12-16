@@ -201,6 +201,10 @@ public class CartServiceImpl implements CartService {
 			User user = udo.findByMobile(cus.getMobile());
 
 			FoodCart cart = user.getCart();
+			
+			if(cart==null) {
+				throw new FoodCartException("cart is already empty");
+			}
 
 			if (cart.getItemList().isEmpty()) {
 				throw new FoodCartException("cart is already empty");
