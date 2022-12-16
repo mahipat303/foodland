@@ -23,8 +23,8 @@ public class Item {
 	private String itemName;
 	
 
-
-	private Category category;
+//	@ManyToOne()
+//	private Category category;
 	
 	private Integer cost;
 	
