@@ -2,12 +2,14 @@ package com.foodland.controller;
 
 import com.foodland.model.Restaurant;
 import com.foodland.service.RestaurentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class RestaurantController {
+	@Autowired
 	private RestaurentService rs;
 	@PostMapping("/restaurant")
 	public Restaurant addRestaurant( @RequestBody Restaurant restaurant){
