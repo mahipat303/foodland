@@ -4,16 +4,20 @@ package com.foodland.controller;
 import com.foodland.exception.CategoryException;
 import com.foodland.model.Category;
 import com.foodland.service.CategoryService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class CategoryController {
+	
+	@Autowired
 	private CategoryService cs;
 
 	@PostMapping("/category/{key}")
-	public Category addCategory(Category category, String key) throws CategoryException, CategoryException {
+	public Category addCategory(@RequestBody Category category, @PathVariable("key") String key) throws CategoryException, CategoryException {
 
 		return cs.addCategory(category, key);
 	}

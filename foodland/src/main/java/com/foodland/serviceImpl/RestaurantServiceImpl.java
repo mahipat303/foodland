@@ -39,6 +39,10 @@ public class RestaurantServiceImpl implements RestaurentService {
 
 
 		CurrentUserSession cus = sdo.findByUuid(key);
+		
+		if(cus==null) {
+			throw new UserException("enter valid key");
+		}
 
 		UserType uType = cus.getType();
 
@@ -63,6 +67,10 @@ public class RestaurantServiceImpl implements RestaurentService {
 	@Override
 	public Restaurant removeRestaurant(Restaurant restaurant, String key) throws RestaurantException {
 		CurrentUserSession cus = sdo.findByUuid(key);
+		
+		if(cus==null) {
+			throw new UserException("enter valid key");
+		}
 
 		UserType uType = cus.getType();
 
@@ -89,6 +97,10 @@ public class RestaurantServiceImpl implements RestaurentService {
 	@Override
 	public Restaurant viewRestaurant(Restaurant restaurant, String key) throws RestaurantException {
 		CurrentUserSession cus = sdo.findByUuid(key);
+		
+		if(cus==null) {
+			throw new UserException("enter valid key");
+		}
 
 		UserType uType = cus.getType();
 
@@ -113,6 +125,10 @@ public class RestaurantServiceImpl implements RestaurentService {
 	@Override
 	public List<Restaurant> viewRestaurantByLocation(String location, String key) throws RestaurantException {
 		CurrentUserSession cus = sdo.findByUuid(key);
+		
+		if(cus==null) {
+			throw new UserException("enter valid key");
+		}
 
 		UserType uType = cus.getType();
 
@@ -132,6 +148,10 @@ public class RestaurantServiceImpl implements RestaurentService {
 	@Override
 	public List<Restaurant> viewRestaurantsByItemName(String name, String key) throws RestaurantException {
 		CurrentUserSession cus = sdo.findByUuid(key);
+		
+		if(cus==null) {
+			throw new UserException("enter valid key");
+		}
 
 		UserType uType = cus.getType();
 
