@@ -45,8 +45,9 @@ public class ItemServiceImpl implements ItemService {
 		CurrentUserSession cus = sdo.findByUuid(key);
 
 		UserType uType = cus.getType();
+		System.out.println(uType.name());
 
-		if (uType.name() == "Restaurant") {
+		if (uType.name().equals("Restaurent")) {
 
 			Restaurant res = rdo.findByMobile(cus.getMobile());
 
@@ -59,8 +60,12 @@ public class ItemServiceImpl implements ItemService {
 				}
 
 			}
-
+			
+			res.setItems(items);
+			item.setRestaurant(res);
+			rdo.save(res);
 			items.add(item);
+			
 			return ido.save(item);
 
 		} else {

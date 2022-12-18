@@ -81,10 +81,14 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 	@Override
 	public String cancelOrderByRestaurant(Integer orderId, String key) throws RestaurantException {
 		CurrentUserSession cus = sdo.findByUuid(key);
+		
+		if (cus == null) {
+			throw new UserException("enter valid key");
+		}
 
 		UserType uType = cus.getType();
 
-		if (uType.name() == "Restaurant") {
+		if (uType.name() == "Restaurent") {
 
 			Restaurant res = rdo.findByMobile(cus.getMobile());
 
@@ -94,11 +98,19 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
 			for (int i = 0; i < orderDetails.size(); i++) {
 				if (orderDetails.get(i).getOrderId() == orderId) {
-					orderDetails.remove(i);
+					
 					od1 = false;
+					orderDetails.get(i).setStatus(false);
+					orderDetails.get(i).setRestaurant(null);
+					odo.save(orderDetails.get(i));
+					orderDetails.remove(i);
 					break;
 				}
 			}
+			
+			
+			
+			res.setOrderDetails(orderDetails);
 
 			if (!od1) {
 				rdo.save(res);
@@ -159,7 +171,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
 		UserType uType = cus.getType();
 
-		if (uType.name() == "Restaurant") {
+		if (uType.name() == "Restaurent") {
 
 			Restaurant res = rdo.findByMobile(cus.getMobile());
 
@@ -192,7 +204,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
 		UserType uType = cus.getType();
 
-		if (uType.name() == "Restaurant") {
+		if (uType.name() == "Restaurent") {
 
 			Restaurant res = rdo.findByMobile(cus.getMobile());
 
@@ -226,10 +238,11 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 			User customer = udo.findByMobile(cus.getMobile());
 
 			List<OrderDetail> orderDetails = customer.getOrderDetails();
-
+			
 			if (orderDetails.isEmpty()) {
 				throw new OrderDetailException("no order available right now");
 			}
+			
 
 			return orderDetails;
 

@@ -2,10 +2,12 @@ package com.foodland.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.AssertTrue;
@@ -23,26 +25,29 @@ public class Restaurant {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer restaurantaid;
-	@AssertTrue
+//	@AssertTrue
 	private String restaurantName;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "Aid")
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "AID")
 	private Address address;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "restaurant" ,cascade = CascadeType.DETACH)
 	@JsonIgnore
 	private List<Item> items;
-	@AssertTrue
+//	@AssertTrue
 	private String ManagerName;
-	@AssertTrue
+//	@AssertTrue
 	@Size(min = 10, max = 10)
 	private String mobile;
 	private String password;
 	private UserType type;
 
-	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.DETACH)
 	@JsonIgnore
 	private List<OrderDetail> orderDetails = new ArrayList<>();
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "resId")
 	@JsonIgnore
 	private List<Category> categories = new ArrayList<>();

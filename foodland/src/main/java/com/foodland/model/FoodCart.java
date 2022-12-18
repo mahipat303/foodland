@@ -25,7 +25,7 @@ public class FoodCart {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer cartId;
 
-	@OneToOne
+	@OneToOne(mappedBy = "cart")
 	private User customer;
 
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)

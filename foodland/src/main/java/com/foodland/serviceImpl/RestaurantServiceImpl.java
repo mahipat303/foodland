@@ -28,7 +28,9 @@ public class RestaurantServiceImpl implements RestaurentService {
 
 	@Override
 	public Restaurant addRestaurant(Restaurant restaurant) throws RestaurantException {
+		
 		return rdo.save(restaurant);
+		
 	}
 
 	@Override
