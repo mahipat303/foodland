@@ -24,8 +24,8 @@ public class Item {
 	private String itemName;
 	
 
-	@ManyToOne(cascade=CascadeType.ALL)
-	private List<Category> category=new ArrayList<>();
+//	@ManyToOne(cascade=CascadeType.ALL)
+//	private List<Category> category=new ArrayList<>();
 	
 	private Integer cost;
 	
@@ -35,12 +35,10 @@ public class Item {
 	
 	private Integer Quantity;
 
-	public Item(Integer itemId, String itemName, List<Category> category, Integer cost, Restaurant restaurant,
-			Integer quantity) {
+	public Item(Integer itemId, String itemName, Integer cost, Restaurant restaurant, Integer quantity) {
 		super();
 		this.itemId = itemId;
 		this.itemName = itemName;
-		this.category = category;
 		this.cost = cost;
 		this.restaurant = restaurant;
 		Quantity = quantity;
@@ -64,14 +62,6 @@ public class Item {
 
 	public void setItemName(String itemName) {
 		this.itemName = itemName;
-	}
-
-	public List<Category> getCategory() {
-		return category;
-	}
-
-	public void setCategory(List<Category> category) {
-		this.category = category;
 	}
 
 	public Integer getCost() {
@@ -98,6 +88,14 @@ public class Item {
 		Quantity = quantity;
 	}
 
+	@Override
+	public String toString() {
+		return "Item [itemId=" + itemId + ", itemName=" + itemName + ", cost=" + cost + ", restaurant=" + restaurant
+				+ ", Quantity=" + Quantity + "]";
+	}
+
+
+	
 	//	@ManyToOne(cascade = CascadeType.ALL)
 //	private FoodCart cart;
 	
