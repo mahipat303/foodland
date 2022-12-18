@@ -5,6 +5,7 @@ import com.foodland.service.RestaurentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,15 +38,18 @@ public class RestaurantController {
 	}
 
 	@GetMapping("/restaurantsbylocation/{location}/{key}")
-	public List<Restaurant> viewRestaurantByLocation(@PathVariable("location") String location,
+	public ResponseEntity<List<Restaurant>> viewRestaurantByLocation(@PathVariable("location") String location,
 			@PathVariable("key") String key) {
-		return rs.viewRestaurantByLocation(location, key);
+		return	new ResponseEntity<List<Restaurant>>(rs.viewRestaurantByLocation(location,key),HttpStatus.OK)
+
 	}
 
-	@GetMapping("/restaurantsbyItemname/{name}/{key}")
-	public List<Restaurant> viewRestaurantByName(@PathVariable("name") String location,
-			@PathVariable("key") String key) {
-		return rs.viewRestaurantsByItemName(location, key);
-	}
+
+	@GetMapping("/restaurantsbyname/{name}/{key}")
+	public ResponseEntity<Restaurant> viewRestaurantByName(@PathVariable("name") String name,
+															 @PathVariable("key") String key) {
+
+	return	new ResponseEntity<Restaurant>(rs.viewRestaurant(name,key),HttpStatus.OK);
+  }
 
 }

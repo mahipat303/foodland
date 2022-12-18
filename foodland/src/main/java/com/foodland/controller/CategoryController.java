@@ -17,7 +17,9 @@ public class CategoryController {
 	private CategoryService cs;
 
 	@PostMapping("/category/{key}")
+
 	public Category addCategory(@RequestBody Category category, @PathVariable("key") String key) throws CategoryException, CategoryException {
+
 
 		return cs.addCategory(category, key);
 	}
