@@ -1,6 +1,7 @@
 package com.foodland.serviceImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,20 +71,62 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public Item updateItem(Item item, String key) throws ItemException, RestaurantException {
-		// TODO Auto-generated method stub
-		return null;
+		CurrentUserSession cs=sdo.findByUuid(key);
+		 
+		UserType uType=cs.getType();
+		
+		if(uType.name().equals("Restaurant")) {
+			Optional<Item> oitem=ido.findById(item.getItemId());
+			if(oitem.isPresent()) {
+				ido.delete(item);
+				return oitem.get();
+			}else {
+				throw new ItemException("No Item Found");
+			}
+		}else {
+			throw new RestaurantException("Login as Restatuarnt");
+		}
+		
 	}
 
 	@Override
 	public Item viewItem(Integer id, String key) throws ItemException, RestaurantException {
-		// TODO Auto-generated method stub
-		return null;
+		CurrentUserSession cus=sdo.findByUuid(key);
+		UserType uType = cus.getType();
+
+		if(uType.name().equals("Restaurant")||uType.name().equals("Customer")) {
+			Optional<Item> item=ido.findById(id);
+			if(item.isPresent()) {
+				return item.get();
+			}
+			else {
+				throw new ItemException("No Item Found with id:"+id);
+			}
+		}else {
+			throw new RestaurantException("Log In First");
+		}
+		
 	}
 
 	@Override
 	public Item removeItem(Integer id, String key) throws ItemException, RestaurantException {
-		// TODO Auto-generated method stub
-		return null;
+		CurrentUserSession cus = sdo.findByUuid(key);
+
+		UserType uType = cus.getType();
+		
+		if(uType.name().equals("Restaurant")) {
+			Optional<Item> oItem=ido.findById(id);
+			if(oItem.isPresent())
+			{
+				ido.deleteAll();
+				return oItem.get();
+			}else {
+				throw new ItemException("No Item Found "+id);
+			}
+			}else {
+				throw new RestaurantException("Login as Restaurant");
+			}
+		
 	}
 
 	@Override
