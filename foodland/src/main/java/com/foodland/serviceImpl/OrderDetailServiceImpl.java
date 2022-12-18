@@ -60,12 +60,15 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 			User user = udo.findByMobile(cus.getMobile());
 
 			FoodCart cart = user.getCart();
+		
 
 			List<Item> items = cart.getItemList();
 
 			if (items.isEmpty()) {
 				throw new FoodCartException("your cart is empty");
 			}
+			
+			
 
 			OrderDetail od = new OrderDetail();
 
@@ -74,6 +77,8 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 			od.setStatus(false);
 			od.setRestaurant(items.get(0).getRestaurant());
 			od.setCustomer(user);
+			
+			cart.getItemList().clear();
 
 			return odo.save(od);
 
@@ -188,6 +193,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 				if (o.getOrderId() == orderId) {
 					o.setStatus(true);
 					od1 = o;
+					odo.delete(o);
 				}
 			}
 			
@@ -204,7 +210,11 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 			bill.setTotalCost(cost);
 			bill.setCustomer(cus2);
 			
+			
+			
 			bdo.save(bill);
+			
+			od1.setCustomer(null);
 
 			return odo.save(od1);
 
