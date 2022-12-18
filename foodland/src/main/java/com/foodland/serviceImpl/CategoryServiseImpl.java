@@ -1,11 +1,10 @@
 package com.foodland.serviceImpl;
 
 import com.foodland.exception.CategoryException;
-import com.foodland.exception.RestaurantException;
 import com.foodland.exception.UserException;
 import com.foodland.model.Category;
 import com.foodland.model.CurrentUserSession;
-import com.foodland.model.Restaurant;
+
 import com.foodland.model.UserType;
 import com.foodland.repository.CategoryDao;
 import com.foodland.repository.SessionDao;

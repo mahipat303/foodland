@@ -1,5 +1,6 @@
 package com.foodland.controller;
 
+
 import com.foodland.exception.CategoryException;
 import com.foodland.model.Category;
 import com.foodland.service.CategoryService;
@@ -12,7 +13,7 @@ public class CategoryController {
 	private CategoryService cs;
 
 	@PostMapping("/category/{key}")
-	public Category addCategory(Category category, String key) throws CategoryException {
+	public Category addCategory(Category category, String key) throws CategoryException, CategoryException {
 
 		return cs.addCategory(category, key);
 	}
