@@ -9,36 +9,36 @@ import java.util.List;
 
 @RestController
 public class CategoryController {
-private CategoryService cs;
-@PostMapping("/category/{key}")
-public Category addCategory(Category category,String key) throws CategoryException {
+	private CategoryService cs;
 
-	return cs.addCategory(category,key);
-}
-@PutMapping("/category/{key}")
-public Category updateCategory(@RequestBody Category category, String key) throws CategoryException {
+	@PostMapping("/category/{key}")
+	public Category addCategory(Category category, String key) throws CategoryException {
 
-	return cs.updateCategory(category,key);
-}
+		return cs.addCategory(category, key);
+	}
 
-@PutMapping("/removecategory/{key}")
-public Category removeCategory(@RequestBody Category category, String key) throws CategoryException {
+	@PutMapping("/category/{key}")
+	public Category updateCategory(@RequestBody Category category, String key) throws CategoryException {
 
-	return cs.removeCategory(category,key);
-}
+		return cs.updateCategory(category, key);
+	}
+
+	@PutMapping("/removecategory/{key}")
+	public Category removeCategory(@RequestBody Category category, String key) throws CategoryException {
+
+		return cs.removeCategory(category, key);
+	}
+
 	@GetMapping("/category/{key}")
 	public Category viewCategory(@RequestBody Category category, String key) throws CategoryException {
 
-		return cs.viewCategory(category,key);
+		return cs.viewCategory(category, key);
 	}
+
 	@GetMapping("/categories/{key}")
 	public List<Category> viewAllCategory(String key) throws CategoryException {
 
 		return cs.viewAllCategory(key);
 	}
-
-
-
-
 
 }

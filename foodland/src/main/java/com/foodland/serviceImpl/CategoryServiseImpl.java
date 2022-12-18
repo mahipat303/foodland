@@ -16,10 +16,14 @@ import java.util.List;
 import java.util.Optional;
 
 public class CategoryServiseImpl implements CategoryService{
+	
 	@Autowired
 	private SessionDao sdo;
+	
+	@Autowired
 	private CategoryDao cdo;
-	@Override
+	
+	@Override	
 	public Category addCategory(Category category, String key) throws CategoryException {
 		CurrentUserSession cus = sdo.findByUuid(key);
 

@@ -30,11 +30,21 @@ public class FoodCartController {
 	}
 //	
 	
-	@PutMapping("/reduceQuantity/{id}/{key}")
+	@PutMapping("/reduceQuantity/{id}/{key}/{quantity}")
 	public ResponseEntity<FoodCart> reduceQuantityHandler(@PathVariable("id") Integer id,
-			@PathVariable("key") String key) {
+			@PathVariable("key") String key,@PathVariable("quantity") Integer q) {
 
-		FoodCart cart = fco.addItemToCart(id, key);
+		FoodCart cart = fco.reduceQuantity(id, q, key);
+
+		return new ResponseEntity<FoodCart>(cart, HttpStatus.CREATED);
+
+	}
+	
+	@PutMapping("/increaseQuantity/{id}/{key}/{quantity}")
+	public ResponseEntity<FoodCart> increaseQuantityHandler(@PathVariable("id") Integer id,
+			@PathVariable("key") String key,@PathVariable("quantity") Integer q) {
+
+		FoodCart cart = fco.increaseQuantity(id, q, key);
 
 		return new ResponseEntity<FoodCart>(cart, HttpStatus.CREATED);
 

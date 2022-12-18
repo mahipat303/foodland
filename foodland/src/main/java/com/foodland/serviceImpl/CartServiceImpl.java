@@ -49,13 +49,23 @@ public class CartServiceImpl implements CartService {
 
 				User user = udo.findByMobile(cus.getMobile());
 
-				FoodCart cart = user.getCart();
-
-				cart.getItemList().add(item.get());
+				FoodCart cart2 = user.getCart();
+				
+				FoodCart cart = new FoodCart();
+				
+				if(cart2==null) {
+					cart2 = cart;
+				}
+		
+				cart2.getItemList().add(item.get());
+				
+				user.setCart(cart2);
+				
+				
 
 				udo.save(user);
 
-				return cart;
+			return	fdo.save(cart2);
 
 			} else {
 				throw new FoodCartException("login as a customer");
@@ -88,27 +98,30 @@ public class CartServiceImpl implements CartService {
 				
 				Item item2 = null;
 				
-				for(int i=0;i<items.size();i++) {
-					if(items.get(i).getItemId()==itemId) {
-						Item item3 = items.get(i);
-						item3.setQuantity(item3.getQuantity()+quantity);
-					}
-				}
-
-				udo.save(user);
-
-				return cart;
-				
-//				for(int i=0;i<items.size();i++) {
-//					if(items.get(i).getItemId()==itemId) {
-//						Item item3 = items.get(i);
-//						item3.setQuantity(item3.getQuantity()+quantity);
-//					}
+//				for (int i = 1; i <= quantity; i++) {
+//
+//					items.add(item.get());
+//
 //				}
 //
 //				udo.save(user);
 //
 //				return cart;
+//				
+				for(int i=0;i<items.size();i++) {
+					if(items.get(i).getItemId()==itemId) {
+						Item item3 = items.get(i);
+						item3.setQuantity(item3.getQuantity()+quantity);
+						ido.save(item3);
+					}
+				}
+				
+				cart.setItemList(items);
+				fdo.save(cart);
+
+				udo.save(user);
+
+				return cart;
 
 			} else {
 				throw new FoodCartException("login as a customer");
@@ -138,26 +151,48 @@ public class CartServiceImpl implements CartService {
 				User user = udo.findByMobile(cus.getMobile());
 
 				FoodCart cart = user.getCart();
+				
+				if(cart==null) {
+					throw new FoodCartException("cart is empty");
+				}
 
 				List<Item> items = cart.getItemList();
 
-				int count = 0;
-				for (Item i : items) {
-					if (item.getItemId() == i.getItemId()) {
-						count++;
+//				int count = 0;
+//				for (Item i : items) {
+//					if (item.getItemId() == i.getItemId()) {
+//						count++;
+//					}
+//				}
+//				if (count < quantity) {
+//					throw new FoodCartException("reduce Quantity should be less than actual quantity");
+//				}
+
+//				for (int i = 1; i <= quantity; i++) {
+//
+//					items.remove(item);
+//
+//				}
+				for(int i=0;i<items.size();i++) {
+					if(items.get(i).getItemId()==itemId) {
+						Item item3 = items.get(i);
+						item3.setQuantity(item3.getQuantity()-quantity);
+						if(item3.getQuantity()<0) {
+							throw new FoodCartException("reduce Quantity should be less than actual quantity");
+						}
+						
+						ido.save(item3);
+				
+						break;
 					}
 				}
-				if (count < quantity) {
-					throw new FoodCartException("reduce Quantity should be less than actual quantity");
-				}
-
-				for (int i = 1; i <= quantity; i++) {
-
-					items.remove(item);
-
-				}
+				cart.setItemList(items);
+				fdo.save(cart);
+				
 				udo.save(user);
+
 				return cart;
+	
 
 			} else {
 				throw new FoodCartException("login as a customer");

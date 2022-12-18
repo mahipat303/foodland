@@ -33,10 +33,10 @@ public class User {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cart_id")
 //	@PrimaryKeyJoinColumn
-//	@JsonIgnore
+	@JsonIgnore
 	private FoodCart cart;
 	
-	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<OrderDetail> orderDetails = new ArrayList<>();
 	
