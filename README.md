@@ -28,3 +28,5 @@
 - Springboot
 - hibernate
 - swagger 
+- lombok
+- spring JPA
