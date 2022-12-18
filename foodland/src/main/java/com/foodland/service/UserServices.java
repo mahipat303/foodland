@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.foodland.exception.UserException;
 import com.foodland.model.User;
 
+import java.util.List;
+
 @Service
 public interface UserServices {
 
@@ -21,7 +23,7 @@ public interface UserServices {
 
 	public User viewUser(String mobile)throws UserException;
 
-	public User viewAllUser()throws UserException;
+	public List<User> viewAllUser()throws UserException;
 
 
 
