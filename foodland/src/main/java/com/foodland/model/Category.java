@@ -19,4 +19,41 @@ public class Category {
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<Item> items=new ArrayList<Item>();
 
+	public Category(Integer categoryId, String categoryName, List<Item> items) {
+		super();
+		CategoryId = categoryId;
+		CategoryName = categoryName;
+		this.items = items;
+	}
+
+	public Category() {
+		super();
+	}
+
+	public Integer getCategoryId() {
+		return CategoryId;
+	}
+
+	public void setCategoryId(Integer categoryId) {
+		CategoryId = categoryId;
+	}
+
+	public String getCategoryName() {
+		return CategoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		CategoryName = categoryName;
+	}
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+	
+	
+
 }

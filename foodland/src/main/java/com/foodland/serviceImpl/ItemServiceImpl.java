@@ -9,11 +9,13 @@ import org.springframework.stereotype.Service;
 import com.foodland.exception.ItemException;
 import com.foodland.exception.OrderDetailException;
 import com.foodland.exception.RestaurantException;
+import com.foodland.model.Category;
 import com.foodland.model.CurrentUserSession;
 import com.foodland.model.Item;
 import com.foodland.model.OrderDetail;
 import com.foodland.model.Restaurant;
 import com.foodland.model.UserType;
+import com.foodland.repository.CategoryDao;
 import com.foodland.repository.ItemDao;
 import com.foodland.repository.OrderDetailDao;
 import com.foodland.repository.RestaurantDao;
@@ -38,6 +40,8 @@ public class ItemServiceImpl implements ItemService {
 
 	@Autowired
 	private OrderDetailDao odo;
+	
+	private CategoryDao cdo;
 
 	@Override
 	public Item addItem(Item item, String key) throws ItemException, RestaurantException {
@@ -45,9 +49,8 @@ public class ItemServiceImpl implements ItemService {
 		CurrentUserSession cus = sdo.findByUuid(key);
 
 		UserType uType = cus.getType();
-		System.out.println(uType.name());
 
-		if (uType.name().equals("Restaurent")) {
+		if (uType.name() == "Restaurant") {
 
 			Restaurant res = rdo.findByMobile(cus.getMobile());
 
@@ -60,12 +63,8 @@ public class ItemServiceImpl implements ItemService {
 				}
 
 			}
-			
-			res.setItems(items);
-			item.setRestaurant(res);
-			rdo.save(res);
+
 			items.add(item);
-			
 			return ido.save(item);
 
 		} else {
@@ -135,9 +134,58 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public Item viewAllItemBycategory(Integer id, String key) throws ItemException, RestaurantException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Item> viewAllItemBycategory(Integer id, String key) throws ItemException, RestaurantException {
+		CurrentUserSession cus = sdo.findByUuid(key);
+
+		UserType uType = cus.getType();
+
+		if(uType.name().equals("Restaurant")||uType.name().equals("Customer")) {
+			Optional<Category> ocat=cdo.findById(id);
+			List<Item> listItem=ocat.get().getItems();
+			
+			if(listItem.isEmpty()) {
+				throw new ItemException("No item available");
+			}
+			return listItem;
+		}else {
+			throw new RestaurantException("First You need to login");
+		}
+	}
+
+	@Override
+	public List<Item> viewAllItemByName(String name, String key) throws ItemException, RestaurantException {
+		CurrentUserSession cus = sdo.findByUuid(key);
+
+		UserType uType = cus.getType();
+		if(uType.name().equals("Restaurant")||uType.name().equals("Customer")) {
+			List<Item> items=ido.findByName(name);
+			if(items.isEmpty()) {
+				throw new ItemException("No Item availbale with name "+name);
+			}
+			return items;
+		}else {
+			throw new RestaurantException("First You need to login");
+		}
+
+	}
+
+	@Override
+	public List<Item> viewAllItemByRestaurant(Integer id, String key) throws ItemException, RestaurantException {
+		CurrentUserSession cus = sdo.findByUuid(key);
+
+		UserType uType = cus.getType();
+
+		if(uType.name().equals("Customer")) {
+				Optional<Restaurant> oRestaurant=rdo.findById(id);
+				List<Item> items=oRestaurant.get().getItems();
+				if(items.isEmpty()) {
+					throw new ItemException("Item Not found By the restaurant "+id);
+				}
+				return items;
+		}
+		else {
+			throw new RestaurantException("First you need to login");
+		}
 	}
 
 }
