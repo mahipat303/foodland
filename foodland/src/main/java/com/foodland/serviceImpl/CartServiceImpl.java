@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.foodland.exception.FoodCartException;
 import com.foodland.exception.ItemException;
+import com.foodland.exception.UserException;
 import com.foodland.model.CurrentUserSession;
 import com.foodland.model.FoodCart;
 import com.foodland.model.Item;
@@ -42,6 +43,10 @@ public class CartServiceImpl implements CartService {
 		if (item.isPresent()) {
 
 			CurrentUserSession cus = sdo.findByUuid(key);
+			
+			if(cus==null) {
+				throw new UserException("enter valid key");
+			}
 
 			UserType uType = cus.getType();
 
@@ -85,6 +90,10 @@ public class CartServiceImpl implements CartService {
 		if (item.isPresent()) {
 
 			CurrentUserSession cus = sdo.findByUuid(key);
+			
+			if(cus==null) {
+				throw new UserException("enter valid key");
+			}
 
 			UserType uType = cus.getType();
 
@@ -143,6 +152,10 @@ public class CartServiceImpl implements CartService {
 			Item item = itemO.get();
 
 			CurrentUserSession cus = sdo.findByUuid(key);
+			
+			if(cus==null) {
+				throw new UserException("enter valid key");
+			}
 
 			UserType uType = cus.getType();
 
@@ -210,12 +223,18 @@ public class CartServiceImpl implements CartService {
 		if (item.isPresent()) {
 
 			CurrentUserSession cus = sdo.findByUuid(key);
+			
+			if(cus==null) {
+				throw new UserException("enter valid key");
+			}
 
 			UserType uType = cus.getType();
 
 			if (uType.name() == "Customer") {
 
 				User user = udo.findByMobile(cus.getMobile());
+				
+				
 
 				FoodCart cart = user.getCart();
 
@@ -239,6 +258,10 @@ public class CartServiceImpl implements CartService {
 	public String clearCart(String key) {
 
 		CurrentUserSession cus = sdo.findByUuid(key);
+		
+		if(cus==null) {
+			throw new UserException("enter valid key");
+		}
 
 		UserType uType = cus.getType();
 

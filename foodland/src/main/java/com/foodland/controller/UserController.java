@@ -57,11 +57,9 @@ public class UserController {
 	}
 
 	@GetMapping("/users")
-	public ResponseEntity<List<User>> viewAllUserHandler(@Valid @RequestBody User user){
+	public ResponseEntity<List<User>> viewAllUserHandler(){
 
-		User u = uservice.addUser(user);
-
-		return new ResponseEntity<List<User>>((List<User>) u,HttpStatus.OK);
+		return new ResponseEntity<List<User>>(uservice.viewAllUser(),HttpStatus.OK);
 
 	}
 
