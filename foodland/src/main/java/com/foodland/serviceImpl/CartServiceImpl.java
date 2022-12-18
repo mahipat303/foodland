@@ -98,6 +98,17 @@ public class CartServiceImpl implements CartService {
 				udo.save(user);
 
 				return cart;
+				
+//				for(int i=0;i<items.size();i++) {
+//					if(items.get(i).getItemId()==itemId) {
+//						Item item3 = items.get(i);
+//						item3.setQuantity(item3.getQuantity()+quantity);
+//					}
+//				}
+//
+//				udo.save(user);
+//
+//				return cart;
 
 			} else {
 				throw new FoodCartException("login as a customer");

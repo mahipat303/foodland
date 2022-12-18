@@ -44,6 +44,10 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
 		CurrentUserSession cus = sdo.findByUuid(key);
 
+		if (cus == null) {
+			throw new UserException("enter valid key");
+		}
+
 		UserType uType = cus.getType();
 
 		if (uType.name() == "Customer") {
@@ -96,6 +100,10 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 				}
 			}
 
+			if (!od1) {
+				rdo.save(res);
+			}
+
 			if (od1) {
 				throw new OrderDetailException("no order available with this id : " + orderId);
 			}
@@ -145,6 +153,10 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 	public OrderDetail acceptOrderByRestaurant(Integer orderId, String key) throws RestaurantException {
 		CurrentUserSession cus = sdo.findByUuid(key);
 
+		if (cus == null) {
+			throw new UserException("enter valid key");
+		}
+
 		UserType uType = cus.getType();
 
 		if (uType.name() == "Restaurant") {
@@ -171,8 +183,12 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 	}
 
 	@Override
-	public List<OrderDetail> viewAllOrder(String key) {
+	public List<OrderDetail> viewAllOrderByRestaurant(String key) {
 		CurrentUserSession cus = sdo.findByUuid(key);
+
+		if (cus == null) {
+			throw new UserException("enter valid key");
+		}
 
 		UserType uType = cus.getType();
 
@@ -192,6 +208,34 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 			throw new RestaurantException("login as a Restaurant");
 		}
 
+	}
+
+	@Override
+	public List<OrderDetail> viewAllOrderByCustomer(String key) throws OrderDetailException, UserException {
+
+		CurrentUserSession cus = sdo.findByUuid(key);
+
+		if (cus == null) {
+			throw new UserException("enter valid key");
+		}
+
+		UserType uType = cus.getType();
+
+		if (uType.name() == "Customer") {
+
+			User customer = udo.findByMobile(cus.getMobile());
+
+			List<OrderDetail> orderDetails = customer.getOrderDetails();
+
+			if (orderDetails.isEmpty()) {
+				throw new OrderDetailException("no order available right now");
+			}
+
+			return orderDetails;
+
+		} else {
+			throw new RestaurantException("login as a customer");
+		}
 	}
 
 }

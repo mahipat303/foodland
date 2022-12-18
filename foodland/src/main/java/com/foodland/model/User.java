@@ -1,5 +1,8 @@
 package com.foodland.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -32,6 +35,10 @@ public class User {
 //	@PrimaryKeyJoinColumn
 //	@JsonIgnore
 	private FoodCart cart;
+	
+	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<OrderDetail> orderDetails = new ArrayList<>();
 	
 
 	public User() {
