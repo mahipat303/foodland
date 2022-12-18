@@ -13,6 +13,8 @@ public interface CartService {
 	public FoodCart removeItem(Integer itemId, String key);
 
 	public String clearCart(String key);
+	
+	public FoodCart viewCart(String key);
 
 
 }

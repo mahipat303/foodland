@@ -290,4 +290,38 @@ public class CartServiceImpl implements CartService {
 		throw new FoodCartException("login as a customer");
 
 	}
+	
+	@Override
+	public FoodCart viewCart(String key) {
+
+		CurrentUserSession cus = sdo.findByUuid(key);
+		
+		if(cus==null) {
+			throw new UserException("enter valid key");
+		}
+
+		UserType uType = cus.getType();
+
+		if (uType.name() == "Customer") {
+
+			User user = udo.findByMobile(cus.getMobile());
+
+			FoodCart cart = user.getCart();
+			
+			if(cart==null) {
+				throw new FoodCartException("cart is empty");
+			}
+
+			if (cart.getItemList().isEmpty()) {
+				throw new FoodCartException("cart is already empty");
+			} else {
+
+				return cart;
+			}
+
+		}
+
+		throw new FoodCartException("login as a customer");
+
+	}
 }
