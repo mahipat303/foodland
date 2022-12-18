@@ -10,10 +10,11 @@ import com.foodland.repository.CategoryDao;
 import com.foodland.repository.SessionDao;
 import com.foodland.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class CategoryServiseImpl implements CategoryService{
 	
 	@Autowired
