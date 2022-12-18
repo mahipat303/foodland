@@ -40,7 +40,8 @@ public class ItemServiceImpl implements ItemService {
 
 	@Autowired
 	private OrderDetailDao odo;
-	
+
+	@Autowired
 	private CategoryDao cdo;
 
 	@Override
@@ -158,7 +159,7 @@ public class ItemServiceImpl implements ItemService {
 
 		UserType uType = cus.getType();
 		if(uType.name().equals("Restaurant")||uType.name().equals("Customer")) {
-			List<Item> items=ido.findByName(name);
+			List<Item> items=ido.findByItemName(name);
 			if(items.isEmpty()) {
 				throw new ItemException("No Item availbale with name "+name);
 			}

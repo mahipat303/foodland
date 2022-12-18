@@ -10,6 +10,6 @@ import com.foodland.model.Item;
 
 @Repository
 public interface ItemDao extends JpaRepository<Item,Integer>{
-	public List<Item> findByName(String name);
-	public List<Item> findByCategory();
+	public List<Item> findByItemName(String name);
+//	public List<Item> findByCategory();
 }
