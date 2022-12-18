@@ -11,6 +11,7 @@ import com.foodland.exception.FoodCartException;
 import com.foodland.exception.OrderDetailException;
 import com.foodland.exception.RestaurantException;
 import com.foodland.exception.UserException;
+import com.foodland.model.Bill;
 import com.foodland.model.CurrentUserSession;
 import com.foodland.model.FoodCart;
 import com.foodland.model.Item;
@@ -18,6 +19,7 @@ import com.foodland.model.OrderDetail;
 import com.foodland.model.Restaurant;
 import com.foodland.model.User;
 import com.foodland.model.UserType;
+import com.foodland.repository.BillDao;
 import com.foodland.repository.OrderDetailDao;
 import com.foodland.repository.RestaurantDao;
 import com.foodland.repository.SessionDao;
@@ -38,6 +40,9 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
 	@Autowired
 	private OrderDetailDao odo;
+	
+	@Autowired
+	private BillDao bdo;
 
 	@Override
 	public OrderDetail addDetails(String key) {
@@ -185,6 +190,21 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 					od1 = o;
 				}
 			}
+			
+			User cus2 =	od1.getCustomer();
+			
+			List<Item> items = od1.getCart().getItemList();
+			Bill bill= new Bill();
+			bill.setTime(LocalDateTime.now());
+			bill.setTotalitems(items.size());
+			double cost = 0;
+			for (Item item : items) {
+				cost+=item.getCost();
+			}
+			bill.setTotalCost(cost);
+			bill.setCustomer(cus2);
+			
+			bdo.save(bill);
 
 			return odo.save(od1);
 

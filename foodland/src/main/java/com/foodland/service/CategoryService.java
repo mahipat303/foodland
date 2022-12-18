@@ -5,6 +5,9 @@ import com.foodland.model.Category;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public interface CategoryService {
 
 	public Category addCategory(Category category,String key) throws CategoryException;

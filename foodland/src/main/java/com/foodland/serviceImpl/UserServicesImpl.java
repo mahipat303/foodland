@@ -10,6 +10,8 @@ import com.foodland.model.User;
 import com.foodland.repository.UserDao;
 import com.foodland.service.UserServices;
 
+import java.util.List;
+
 
 @Service
 public class UserServicesImpl implements UserServices{
@@ -46,17 +48,40 @@ public class UserServicesImpl implements UserServices{
 
 	@Override
 	public User removeUser(String mobile) throws UserException {
-		return null;
+		CurrentUserSession existUser = sdao.findByMobile(mobile);
+
+		if(existUser == null)
+			throw new UserException("Plz login with this number : "+ mobile);
+
+		User user1 = udao.findByMobile(mobile);
+		udao.delete(user1);
+		sdao.delete(existUser);
+		return user1;
+
 	}
 
 	@Override
 	public User viewUser(String mobile) throws UserException {
-		return null;
+		CurrentUserSession existUser = sdao.findByMobile(mobile);
+
+		if(existUser == null)
+			throw new UserException("Plz login with this number : "+ mobile);
+
+		User user1 = udao.findByMobile(mobile);
+		return user1;
 	}
 
 	@Override
-	public User viewAllUser() throws UserException {
-		return null;
+	public List<User> viewAllUser() throws UserException {
+
+		List<User> user1 = udao.findAll();
+
+		if(user1.isEmpty()){
+			throw new UserException("No user found");
+		}
+
+
+		return user1;
 	}
 
 }

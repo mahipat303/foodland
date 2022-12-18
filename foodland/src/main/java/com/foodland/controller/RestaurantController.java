@@ -44,11 +44,12 @@ public class RestaurantController {
 
 	}
 
+
 	@GetMapping("/restaurantsbyname/{name}/{key}")
 	public ResponseEntity<Restaurant> viewRestaurantByName(@PathVariable("name") String name,
 															 @PathVariable("key") String key) {
 
-	return	new ResponseEntity<Restaurant>(rs.viewRestaurant(name,key),HttpStatus.OK)
-	}
+	return	new ResponseEntity<Restaurant>(rs.viewRestaurant(name,key),HttpStatus.OK);
+  }
 
 }

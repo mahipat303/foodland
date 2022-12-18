@@ -2,6 +2,7 @@ package com.foodland.serviceImpl;
 
 import com.foodland.exception.CategoryException;
 import com.foodland.exception.UserException;
+import com.foodland.exception.UserLoginException;
 import com.foodland.model.Category;
 import com.foodland.model.CurrentUserSession;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class CategoryServiseImpl implements CategoryService{
 	
@@ -26,10 +28,14 @@ public class CategoryServiseImpl implements CategoryService{
 	@Override	
 	public Category addCategory(Category category, String key) throws CategoryException {
 		CurrentUserSession cus = sdo.findByUuid(key);
+		
+		if(cus==null) {
+			throw new UserLoginException("enter valid key");
+		}
 
 		UserType uType = cus.getType();
 
-		if (uType.name().equals("Restaurant")) {
+		if (uType.name().equals("Restaurent")) {
              if(category!=null){
 				 return cdo.save(category);
 			 }else{
