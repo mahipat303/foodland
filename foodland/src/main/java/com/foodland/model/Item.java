@@ -22,11 +22,7 @@ public class Item {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Integer itemId;
 	private String itemName;
-	
 
-	@ManyToOne(cascade=CascadeType.ALL)
-	private List<Category> category=new ArrayList<>();
-	
 	private Integer cost;
 	
 	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
@@ -35,12 +31,9 @@ public class Item {
 	
 	private Integer Quantity;
 
-	public Item(Integer itemId, String itemName, List<Category> category, Integer cost, Restaurant restaurant,
-			Integer quantity) {
-		super();
+	public Item(Integer itemId, String itemName, Integer cost, Restaurant restaurant, Integer quantity) {
 		this.itemId = itemId;
 		this.itemName = itemName;
-		this.category = category;
 		this.cost = cost;
 		this.restaurant = restaurant;
 		Quantity = quantity;
@@ -66,13 +59,6 @@ public class Item {
 		this.itemName = itemName;
 	}
 
-	public List<Category> getCategory() {
-		return category;
-	}
-
-	public void setCategory(List<Category> category) {
-		this.category = category;
-	}
 
 	public Integer getCost() {
 		return cost;

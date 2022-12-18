@@ -5,38 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b43017a-9291-4310-bbe3-605d92e3223d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/controller/FoodCartController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/exception/FoodCartException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/exception/ItemException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/exception/OrderDetailException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/model/FoodCart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/model/OrderDetail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/repository/CurrentUserSessionDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/repository/FoodCartDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/repository/OrderDetailDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/service/CartService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/service/OrderDetailService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/serviceImpl/CartServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/serviceImpl/OrderDetailServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/controller/ItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/controller/RestaurantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/controller/RestaurantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/controller/readme.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/exception/RestaurantException.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/exception/RestaurantException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/model/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/model/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/model/Restaurant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/repository/RestaurantDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/repository/RestaurantDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/repository/SessionDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/repository/SessionDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/service/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/service/ItemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/service/RestaurentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/service/RestaurentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/service/UserServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/service/UserServices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/serviceImpl/ItemServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/serviceImpl/ItemServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/serviceImpl/LoginServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/serviceImpl/LoginServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/serviceImpl/RestaurantServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/serviceImpl/RestaurantServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/serviceImpl/UserServicesImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/foodland/src/main/java/com/foodland/serviceImpl/UserServicesImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foodland/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/foodland/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,10 +17,13 @@
     <option name="done" value="true" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/foodland" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
@@ -61,16 +34,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/MASAI/MASAI/MASAI/CODING/STS/GitHub/absent-sky-3233/foodland&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/rahul/OneDrive/Projects/absent-sky-3233",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
-  <component name="RunManager">
-    <configuration name="FoodlandApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+}]]></component>
+  <component name="RunManager" selected="Application.com.foodland.FoodlandApplication">
+    <configuration name="Unnamed" type="Application" factoryName="Application" editBeforeRun="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="18" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.foodland.FoodlandApplication" type="Application" factoryName="Application" activateToolWindowBeforeRun="false" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="18" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.foodland.FoodlandApplication" />
@@ -97,9 +81,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Unnamed" />
+      <item itemvalue="Application.com.foodland.FoodlandApplication" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FoodlandApplication" />
+        <item itemvalue="Application.com.foodland.FoodlandApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -113,6 +101,17 @@
       <updated>1671102259847</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/absent_sky_3233$FoodlandApplication.ic" NAME="FoodlandApplication Coverage Results" MODIFIED="1671360495164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
