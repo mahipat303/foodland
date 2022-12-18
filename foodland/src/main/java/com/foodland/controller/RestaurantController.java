@@ -42,10 +42,10 @@ public class RestaurantController {
 		return rs.viewRestaurantByLocation(location, key);
 	}
 
-	@GetMapping("/restaurantsbyname/{name}/{key}")
+	@GetMapping("/restaurantsbyItemname/{name}/{key}")
 	public List<Restaurant> viewRestaurantByName(@PathVariable("name") String location,
 			@PathVariable("key") String key) {
-		return rs.viewRestaurantByLocation(location, key);
+		return rs.viewRestaurantsByItemName(location, key);
 	}
 
 }

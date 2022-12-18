@@ -16,7 +16,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Entity
-@Data
 public class OrderDetail {
 
 	@Id
@@ -36,9 +35,74 @@ public class OrderDetail {
 
 	@ManyToOne
 	private User customer;
+	
+	public OrderDetail() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public OrderDetail(Integer orderId, LocalDateTime orderDate, FoodCart cart, Boolean status, Restaurant restaurant,
+			User customer) {
+		super();
+		this.orderId = orderId;
+		this.orderDate = orderDate;
+		this.cart = cart;
+		this.status = status;
+		this.restaurant = restaurant;
+		this.customer = customer;
+	}
+
+	public Integer getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
+	}
+
+	public LocalDateTime getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(LocalDateTime orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public FoodCart getCart() {
+		return cart;
+	}
+
+	public void setCart(FoodCart cart) {
+		this.cart = cart;
+	}
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
+
+	public User getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(User customer) {
+		this.customer = customer;
+	}
 
 //	@OneToOne
 //	@JsonIgnore
 //	private  Bill bill;
+	
+	
 
 }

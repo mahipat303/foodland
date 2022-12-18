@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.foodland.exception.ItemException;
 import com.foodland.exception.OrderDetailException;
 import com.foodland.exception.RestaurantException;
+import com.foodland.exception.UserException;
 import com.foodland.model.Category;
 import com.foodland.model.CurrentUserSession;
 import com.foodland.model.Item;
@@ -48,6 +49,10 @@ public class ItemServiceImpl implements ItemService {
 	public Item addItem(Item item, String key) throws ItemException, RestaurantException {
 
 		CurrentUserSession cus = sdo.findByUuid(key);
+		
+		if(cus==null) {
+			throw new UserException("enter valid key");
+		}
 
 		UserType uType = cus.getType();
 
@@ -64,6 +69,8 @@ public class ItemServiceImpl implements ItemService {
 				}
 
 			}
+			
+			item.setRestaurant(res);
 
 			items.add(item);
 			return ido.save(item);
@@ -77,7 +84,9 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public Item updateItem(Item item, String key) throws ItemException, RestaurantException {
 		CurrentUserSession cs=sdo.findByUuid(key);
-		 
+		if(cs==null) {
+			throw new UserException("enter valid key");
+		}
 		UserType uType=cs.getType();
 		
 		if(uType.name().equals("Restaurent")) {
@@ -97,6 +106,10 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public Item viewItem(Integer id, String key) throws ItemException, RestaurantException {
 		CurrentUserSession cus=sdo.findByUuid(key);
+		
+		if(cus==null) {
+			throw new UserException("enter valid key");
+		}
 		UserType uType = cus.getType();
 
 		if(uType.name().equals("Restaurent")||uType.name().equals("Customer")) {
@@ -116,6 +129,10 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public Item removeItem(Integer id, String key) throws ItemException, RestaurantException {
 		CurrentUserSession cus = sdo.findByUuid(key);
+		
+		if(cus==null) {
+			throw new UserException("enter valid key");
+		}
 
 		UserType uType = cus.getType();
 		
@@ -137,6 +154,10 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public List<Item> viewAllItemBycategory(Integer id, String key) throws ItemException, RestaurantException {
 		CurrentUserSession cus = sdo.findByUuid(key);
+		
+		if(cus==null) {
+			throw new UserException("enter valid key");
+		}
 
 		UserType uType = cus.getType();
 
@@ -156,6 +177,10 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public List<Item> viewAllItemByName(String name, String key) throws ItemException, RestaurantException {
 		CurrentUserSession cus = sdo.findByUuid(key);
+		
+		if(cus==null) {
+			throw new UserException("enter valid key");
+		}
 
 		UserType uType = cus.getType();
 		if(uType.name().equals("Restaurent")||uType.name().equals("Customer")) {
@@ -173,6 +198,10 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public List<Item> viewAllItemByRestaurant(Integer id, String key) throws ItemException, RestaurantException {
 		CurrentUserSession cus = sdo.findByUuid(key);
+		
+		if(cus==null) {
+			throw new UserException("enter valid key");
+		}
 
 		UserType uType = cus.getType();
 
