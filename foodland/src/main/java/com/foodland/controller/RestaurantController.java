@@ -40,16 +40,15 @@ public class RestaurantController {
 	@GetMapping("/restaurantsbylocation/{location}/{key}")
 	public ResponseEntity<List<Restaurant>> viewRestaurantByLocation(@PathVariable("location") String location,
 			@PathVariable("key") String key) {
-		return	new ResponseEntity<List<Restaurant>>(rs.viewRestaurantByLocation(location,key),HttpStatus.OK)
+		return new ResponseEntity<List<Restaurant>>(rs.viewRestaurantByLocation(location, key), HttpStatus.OK);
 
 	}
 
-
 	@GetMapping("/restaurantsbyname/{name}/{key}")
-	public ResponseEntity<Restaurant> viewRestaurantByName(@PathVariable("name") String name,
-															 @PathVariable("key") String key) {
+	public ResponseEntity<List<Restaurant>> viewRestaurantByName(@PathVariable("name") String name,
+			@PathVariable("key") String key) {
 
-	return	new ResponseEntity<Restaurant>(rs.viewRestaurant(name,key),HttpStatus.OK);
-  }
+		return new ResponseEntity<List<Restaurant>>(rs.viewRestaurantsByItemName(name, key), HttpStatus.OK);
+	}
 
 }
