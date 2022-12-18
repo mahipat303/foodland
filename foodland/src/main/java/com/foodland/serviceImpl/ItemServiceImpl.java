@@ -51,7 +51,7 @@ public class ItemServiceImpl implements ItemService {
 
 		UserType uType = cus.getType();
 
-		if (uType.name() == "Restaurant") {
+		if (uType.name() == "Restaurent") {
 
 			Restaurant res = rdo.findByMobile(cus.getMobile());
 
@@ -80,7 +80,7 @@ public class ItemServiceImpl implements ItemService {
 		 
 		UserType uType=cs.getType();
 		
-		if(uType.name().equals("Restaurant")) {
+		if(uType.name().equals("Restaurent")) {
 			Optional<Item> oitem=ido.findById(item.getItemId());
 			if(oitem.isPresent()) {
 				ido.delete(item);
@@ -99,7 +99,7 @@ public class ItemServiceImpl implements ItemService {
 		CurrentUserSession cus=sdo.findByUuid(key);
 		UserType uType = cus.getType();
 
-		if(uType.name().equals("Restaurant")||uType.name().equals("Customer")) {
+		if(uType.name().equals("Restaurent")||uType.name().equals("Customer")) {
 			Optional<Item> item=ido.findById(id);
 			if(item.isPresent()) {
 				return item.get();
@@ -119,7 +119,7 @@ public class ItemServiceImpl implements ItemService {
 
 		UserType uType = cus.getType();
 		
-		if(uType.name().equals("Restaurant")) {
+		if(uType.name().equals("Restaurent")) {
 			Optional<Item> oItem=ido.findById(id);
 			if(oItem.isPresent())
 			{
@@ -140,7 +140,7 @@ public class ItemServiceImpl implements ItemService {
 
 		UserType uType = cus.getType();
 
-		if(uType.name().equals("Restaurant")||uType.name().equals("Customer")) {
+		if(uType.name().equals("Restaurent")||uType.name().equals("Customer")) {
 			Optional<Category> ocat=cdo.findById(id);
 			List<Item> listItem=ocat.get().getItems();
 			
@@ -158,7 +158,7 @@ public class ItemServiceImpl implements ItemService {
 		CurrentUserSession cus = sdo.findByUuid(key);
 
 		UserType uType = cus.getType();
-		if(uType.name().equals("Restaurant")||uType.name().equals("Customer")) {
+		if(uType.name().equals("Restaurent")||uType.name().equals("Customer")) {
 			List<Item> items=ido.findByItemName(name);
 			if(items.isEmpty()) {
 				throw new ItemException("No Item availbale with name "+name);
@@ -176,7 +176,7 @@ public class ItemServiceImpl implements ItemService {
 
 		UserType uType = cus.getType();
 
-		if(uType.name().equals("Customer")) {
+		if(uType.name().equals("Restaurent")) {
 				Optional<Restaurant> oRestaurant=rdo.findById(id);
 				List<Item> items=oRestaurant.get().getItems();
 				if(items.isEmpty()) {
